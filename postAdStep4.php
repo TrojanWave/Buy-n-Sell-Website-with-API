@@ -1,3 +1,38 @@
+<?php 
+	require('API/keepSession.php');
+	require('API/getLocations.php');
+	require('API/getCatagories.php');
+	require('API/loginCheck.php');
+
+
+	if (isset($_GET["area"])) {
+		$area = $_GET["area"];
+		$_SESSION["area"] = $area;
+	}
+
+	if (isset($_GET["catagory"])) {
+		$catagory = $_GET["catagory"];
+		$_SESSION["catagory"] = $catagory;
+	}
+
+	if (isset($_SESSION["area"])) {
+		$area = $_SESSION["area"];
+	}
+
+	if (isset($_SESSION["catagory"])) {
+		$catagory = $_SESSION["catagory"];
+	}
+
+	$returnUrl = "postAdStep1.php";
+
+	checkLogin($returnUrl);
+
+	if (isset($_POST["submit"])) {
+		require('API/postAd.php');
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -222,38 +257,38 @@
             <hr>
             <h3>Please fill in these information about your Ad</h3>
 
-						<form>
+						<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 							<div class="form-group">
 						    <label for="inputAddress">Ad title</label>
-						    <input type="text" class="form-control" id="inputAddress" placeholder="Example : Sony Xperia Z5 for sale">
+						    <input type="text" name="title" class="form-control" id="inputAddress" placeholder="Example : Sony Xperia Z5 for sale">
 						  </div>
 						  <div class="form-row">
 						    <div class="form-group col-md-6">
 						      <label for="inputEmail4">Price</label>
-						      <input type="number" class="form-control" id="inputEmail4" placeholder="Example: 25000/-">
+						      <input type="number" name="price" class="form-control" id="inputEmail4" placeholder="Example: 25000/-">
 						    </div>
 						    <div class="form-group col-md-6">
 						      <label for="inputPassword4">Condition</label>
-						      <input type="text" class="form-control" id="inputPassword4" placeholder="Example: Scratched">
+						      <input type="text" name="item_condition" class="form-control" id="inputPassword4" placeholder="Example: Scratched">
 						    </div>
 						  </div>
 							<div class="form-group">
 						    <label for="inputAddress">Contact Number</label>
-						    <input type="text" class="form-control" id="inputAddress" placeholder="Ex: 071 XXX XXXX">
+						    <input type="text" name="contact" class="form-control" id="inputAddress" placeholder="Ex: 071 XXX XXXX">
 						  </div>
 							<div class="form-group">
 						    <label for="exampleFormControlTextarea1">Description</label>
-						    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 						  </div>
 						  <div class="form-group" style="margin-left: 20px;">
 						    <div class="form-check">
-						      <input class="form-check-input" type="checkbox" id="gridCheck">
+						      <input name="nego" class="form-check-input" type="checkbox" id="gridCheck">
 						      <label class="form-check-label" for="gridCheck">
 						      	Price Negotiable
 						      </label>
 						    </div>
 						  </div>
-						  <button type="submit" class="btn btn-primary">Continue</button>
+						  <button name="submit" type="submit" class="btn btn-primary">Continue</button>
 						</form>
 						<div class="container" style="margin-top: 20px">
 							<div class="row">

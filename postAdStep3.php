@@ -1,14 +1,14 @@
 <?php 
-require('API/keepSession.php');
-require('API/getLocations.php');
-require('API/getCatagories.php');
-require('API/loginCheck.php');
+	require('API/keepSession.php');
+	require('API/getLocations.php');
+	require('API/getCatagories.php');
+	require('API/loginCheck.php');
 
-$area = $_GET["area"];
+	$area = $_GET["area"];
 
-$returnUrl = "postAdStep3.php";
+	$returnUrl = "postAdStep1.php";
 
-checkLogin($returnUrl);
+	checkLogin($returnUrl);
 
 ?>
 
@@ -245,7 +245,7 @@ checkLogin($returnUrl);
 												<i class="fas <?php echo $row_catagories["fa_icon"]; ?> fa-5x" style="text-align : center; margin-top : 20px;"></i>
 												<div class="card-body">
 													<h5 class="card-title"><?php echo $row_catagories["name"]; ?></h5>
-													<a href="postAdStep4.php?catagory=<?php echo $row_catagories["id"]; ?>?area=<?php echo $area; ?>" class="btn btn-primary">Continue</a>
+													<a href="postAdStep4.php?catagory=<?php echo $row_catagories["id"]; ?>&area=<?php echo $area; ?>" class="btn btn-primary">Continue</a>
 												</div>
 											</div>
 										</div>

@@ -6,7 +6,7 @@ require('API/loginCheck.php');
 
 $district = $_GET["district"];
 
-$returnUrl = "postAdStep2.php";
+$returnUrl = "postAdStep1.php";
 
 checkLogin($returnUrl);
 

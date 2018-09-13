@@ -1,3 +1,20 @@
+<?php 
+	require('API/keepSession.php');
+	require('API/getLocations.php');
+	require('API/getCatagories.php');
+	require('API/loginCheck.php');
+
+	$returnUrl = "postAdStep1.php";
+
+	checkLogin($returnUrl);
+
+	if (isset($_SESSION["advert_id"])) {
+		$advert_id = $_SESSION["advert_id"];
+		$_SESSION["advert_id"] = $advert_id;
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,9 +237,9 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="contact_form_container">
-						<div class="contact_form_title">Post a Free Ad : Step 5</div>
+						<div class="contact_form_title">Post a Free Ad : Step 5 - Finish</div>
             <hr>
-            <h3>Please fill in these information about your Ad</h3>
+            <h3>Please upload some images for your Ad here.</h3>
 
 						<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
 							<div id="drop">
@@ -238,7 +255,7 @@
 
 						</form>
 						<form class="" action="index.html" method="post">
-							<button type="submit" class="btn btn-primary">Continue</button>
+							<a href="index.php"><button type="submit" class="btn btn-primary">Finish</button></a>
 						</form>
 
 
