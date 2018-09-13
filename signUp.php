@@ -1,6 +1,7 @@
 <?php
 require_once('API/keepSession.php');
 require_once('API/getCatagories.php');
+require_once('API/getDistricts.php');
 require_once('API/getLocations.php');
 
 ?>
@@ -71,32 +72,65 @@ require_once('API/getLocations.php');
 						</div>
 					</div>
 
-					<!-- Wishlist -->
-					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
-								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="wishlist.html">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
-								</div>
-							</div>
-
-							<!-- Cart -->
-							<div class="cart">
-								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
-									<div class="cart_icon">
-										<img src="images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+						<!-- Wishlist Cart Or Login Signup -->
+						<?php
+					if (isset($_SESSION["active"]) && $_SESSION["active"] == 1) {
+						///////////////////////// If logged in //////////////////////////////
+						?>
+						<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+							<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+								<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+									<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
+									<div class="wishlist_content">
+										<div class="wishlist_text"><a href="wishlist.html">Wishlist</a></div>
+										<div class="wishlist_count">115</div>
 									</div>
-									<div class="cart_content">
-										<div class="cart_text"><a href="cart.html">Cart</a></div>
-										<div class="cart_price">$85</div>
+								</div>
+
+								<!-- Cart -->
+								<div class="cart">
+									<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_icon">
+											<img src="images/cart.png" alt="">
+											<div class="cart_count"><span>10</span></div>
+										</div>
+										<div class="cart_content">
+											<div class="cart_text"><a href="cart.html">Cart</a></div>
+											<div class="cart_price">$85</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+						<?php
+					}else {
+						////////////////////////// If not Logged in /////////////////////////////
+						?>
+						<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+							<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+								<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+									<div class="wishlist_icon"><img src="images/login.png" alt=""></div>
+									<div class="wishlist_content">
+										<div class="wishlist_text"><a href="signIn.html">Log in</a></div>
+									</div>
+								</div>
+
+								<!-- Cart -->
+								<div class="cart">
+									<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_icon">
+											<img src="images/signup.png" alt="">
+										</div>
+										<div class="cart_content">
+											<div class="cart_text"><a href="signUp.php">Create an Account</a></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<?php
+					}
+						?>
 				</div>
 			</div>
 		</div>
@@ -119,7 +153,15 @@ require_once('API/getLocations.php');
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="viewCatogoryComputers&Laptops.html">Vehicles<i class="fas fa-chevron-right ml-auto"></i></a></li>
+								<?php
+									///////////////////// The catagory list ////////////////////////////////////////
+									$result_catagories = getCatagories();
+										while($row_catagories = $result_catagories->fetch_assoc()) {
+											?>
+											<li><a href="viewCatogory.php?catagory=<?php echo $row_catagories["id"]; ?>"><?php echo $row_catagories["name"]; ?><i class="fas <?php echo $row_catagories["fa_icon"]; ?> ml-auto"></i></a></li>
+										<?php
+										}
+									?>
 								</ul>
 							</div>
 
@@ -271,10 +313,17 @@ require_once('API/getLocations.php');
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputCity">District</label>
-                  <select id="inputState" class="form-control" style="margin-left:-3px">
-                    <option selected>Choose...</option>
-                    <option>Kandy</option>
-                    <option>Colombo</option>
+                  <select id="inputDistrict" class="form-control" style="margin-left:-3px">
+                    <option value="0" selected>Choose...</option>
+                    <?php
+					///////////////////// The catagory list ////////////////////////////////////////
+						$result_districts = getDistricts();
+						while($row_districts = $result_districts->fetch_assoc()) {
+					?>
+							<option selected><?php echo $row_districts["distric"]; ?></option>
+					<?php
+						}
+					?>
                   </select>
                 </div>
                 <div class="form-group col-md-4">

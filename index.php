@@ -2,7 +2,7 @@
 require_once('API/keepSession.php');
 require_once('API/getCatagories.php');
 
-$result_catagories = getCatagories();
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -157,6 +157,7 @@ $result_catagories = getCatagories();
 								<ul class="cat_menu">
 									<?php
 									///////////////////// The catagory list ////////////////////////////////////////
+									$result_catagories = getCatagories();
 										while($row_catagories = $result_catagories->fetch_assoc()) {
 											?>
 											<li><a href="viewCatogory.php?catagory=<?php echo $row_catagories["id"]; ?>"><?php echo $row_catagories["name"]; ?><i class="fas <?php echo $row_catagories["fa_icon"]; ?> ml-auto"></i></a></li>
