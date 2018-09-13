@@ -1,13 +1,28 @@
+<?php 
+require('API/keepSession.php');
+require('API/getLocations.php');
+require('API/getCatagories.php');
+require('API/loginCheck.php');
+
+$area = $_GET["area"];
+
+$returnUrl = "postAdStep3.php";
+
+checkLogin($returnUrl);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buy n Sell-Post a Ad-step 2</title>
+<title>Buy n Sell-Post a Ad-step 3</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 
@@ -203,6 +218,7 @@
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item"><a href="postAdStep1.html">Post your Ad</a></li>
 				<li class="breadcrumb-item"><a href="postAdStep2.html">Post a Free Ad: Step 2</a></li>
+				<li class="breadcrumb-item"><a href="postAdStep3.html">Post a Free Ad: Step 3</a></li>
       </ol>
     </nav>
   </div>
@@ -214,19 +230,30 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="contact_form_container">
-						<div class="contact_form_title">Post a Free Ad : Step 2</div>
+						<div class="contact_form_title">Post a Free Ad : Step 3</div>
             <hr>
-            <h3>Select your Location</h3>
+            <h3>Select your ad catagory</h3>
 
             <div class="row">
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Kelaniya</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
+							<?php
+								///////////////////// The catagory list ////////////////////////////////////////
+								$result_catagories = getCatagories();
+									while($row_catagories = $result_catagories->fetch_assoc()) {
+							?>
+										<div class="col" style="margin-bottom : 20px;">
+											<div class="card" style="width: 9rem;">
+												<i class="fas <?php echo $row_catagories["fa_icon"]; ?> fa-5x" style="text-align : center; margin-top : 20px;"></i>
+												<div class="card-body">
+													<h5 class="card-title"><?php echo $row_catagories["name"]; ?></h5>
+													<a href="postAdStep4.php?catagory=<?php echo $row_catagories["id"]; ?>?area=<?php echo $area; ?>" class="btn btn-primary">Continue</a>
+												</div>
+											</div>
+										</div>
+							<?php
+									}
+							?>
+
+              
             </div>
 
 

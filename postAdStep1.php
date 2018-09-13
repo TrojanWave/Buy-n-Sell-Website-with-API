@@ -1,7 +1,19 @@
+<?php
+require('API/keepSession.php');
+require('API/getDistricts.php');
+require('API/getCatagories.php');
+require('API/loginCheck.php');
+
+	$returnUrl = "postAdStep1.php";
+
+	checkLogin($returnUrl);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buy n Sell-Post a Ad-step 3</title>
+<title>Buy n Sell-Post a Ad-step 1</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -202,11 +214,10 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item"><a href="postAdStep1.html">Post your Ad</a></li>
-				<li class="breadcrumb-item"><a href="postAdStep2.html">Post a Free Ad: Step 2</a></li>
-				<li class="breadcrumb-item"><a href="postAdStep3.html">Post a Free Ad: Step 3</a></li>
       </ol>
     </nav>
   </div>
+
 
 	<!-- Contact Form -->
 
@@ -215,128 +226,29 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="contact_form_container">
-						<div class="contact_form_title">Post a Free Ad : Step 3</div>
+						<div class="contact_form_title">Post a Free Ad : Step 1</div>
             <hr>
-            <h3>Select your ad catagory</h3>
+            <h3>Select your District</h3>
 
             <div class="row">
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Vehicles</h5>
-                    <a href="postAdStep2.html" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Mobile Phone & Tabs</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Laptops & Computers</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Accessories</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Camera</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">TV & Other Electronics</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Property</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Fashion</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Sports</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Animals</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Jobs</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Education</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 9rem;">
-                  <i class="fas fa-mobile fa-5x" style="text-align : center; margin-top : 20px;"></i>
-                  <div class="card-body">
-                    <h5 class="card-title">Food & Agriculture</h5>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
+
+							<?php
+								///////////////////// The catagory list ////////////////////////////////////////
+								$result_districts = getDistricts();
+								while($row_districts = $result_districts->fetch_assoc()) {
+									?>
+									<div class="col" style="margin-bottom : 20px;">
+										<div class="card" style="width: 13rem;">
+											<div class="card-body">
+												<h3 class="card-title"><?php echo $row_districts["district"]; ?></h3>
+												<a href="postAdStep2.php?district=<?php echo $row_districts["district"]; ?>" class="btn btn-primary">Continue</a>
+											</div>
+										</div>
+									</div>
+								<?php
+								}
+							?>
+              
             </div>
 
 

@@ -1,6 +1,6 @@
 <?php
-require_once('API/keepSession.php');
-require_once('API/getCatagories.php');
+require('API/keepSession.php');
+require('API/getCatagories.php');
 
 
  ?>
@@ -113,7 +113,7 @@ require_once('API/getCatagories.php');
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="images/login.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="signIn.html">Log in</a></div>
+									<div class="wishlist_text"><a href="signIn.php">Log in</a></div>
 								</div>
 							</div>
 
@@ -173,7 +173,7 @@ require_once('API/getCatagories.php');
 								<ul class="standard_dropdown main_nav_dropdown">
 									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="requestList.html">Requests<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postAdStep1.html">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postAdStep1.php">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="postRequest.html">Post a Request<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>

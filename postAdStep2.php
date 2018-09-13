@@ -1,7 +1,21 @@
+<?php 
+require('API/keepSession.php');
+require('API/getLocations.php');
+require('API/getCatagories.php');
+require('API/loginCheck.php');
+
+$district = $_GET["district"];
+
+$returnUrl = "postAdStep2.php";
+
+checkLogin($returnUrl);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buy n Sell-Post a Ad-step 1</title>
+<title>Buy n Sell-Post a Ad-step 2</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -202,10 +216,10 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item"><a href="postAdStep1.html">Post your Ad</a></li>
+				<li class="breadcrumb-item"><a href="postAdStep2.html">Post a Free Ad: Step 2</a></li>
       </ol>
     </nav>
   </div>
-
 
 	<!-- Contact Form -->
 
@@ -214,214 +228,30 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="contact_form_container">
-						<div class="contact_form_title">Post a Free Ad : Step 1</div>
-            <hr>
-            <h3>Select your District</h3>
+						<div class="contact_form_title">Post a Free Ad : Step 2</div>
+							<hr>
+							<h3>Select your area</h3>
 
-            <div class="row">
-              <div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Kandy</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Colombo</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Galle</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Polonnaruwa</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Ampara</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Anuradhapura</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Badulla</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Batticaloa</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Gampaha</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Hambanthota</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Jaffna</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Kaluthara</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Kegalle</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Kilinochchi</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Kurunegala</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Mannar</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Matale</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Matara</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Monaragala</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Mullathiv</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Nuwara Eliya</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Putthalam</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Rathnapura</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Trincomalee</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-							<div class="col" style="margin-bottom : 20px;">
-                <div class="card" style="width: 13rem;">
-                  <div class="card-body">
-                    <h3 class="card-title">Vavniya</h3>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
+							<div class="row">
+              
+			<?php
+								///////////////////// The catagory list ////////////////////////////////////////
+								$result_locations = getLocationsOfDistrict($district);
+								while($row_locations = $result_locations->fetch_assoc()) {
+									?>
+									<div class="col" style="margin-bottom : 20px;">
+										<div class="card" style="width: 13rem;">
+											<div class="card-body">
+												<h3 class="card-title"><?php echo $row_locations["area"]; ?></h3>
+												<a href="postAdStep3.php?area=<?php echo $row_locations["id"]; ?>" class="btn btn-primary">Continue</a>
+											</div>
+										</div>
+									</div>
+								<?php
+								}
+							?>
+			  
+            			</div>
 					</div>
 				</div>
 			</div>

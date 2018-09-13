@@ -1,3 +1,19 @@
+<?php
+require('API/keepSession.php');
+require('API/login.php');
+
+	if (isset($_POST["submit"])) {
+		$username = $_POST["email"];
+		$password = $_POST["password"];
+
+		validateLogin($username, $password);
+	}
+
+	if (isset($_SESSION["returnUrl"]) && isset($_SESSION["active"]) && $_SESSION["active"] == 1) {
+		header('Location: '.$_SESSION["returnUrl"]);
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,28 +227,39 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="contact_form_container">
-						<div class="contact_form_title">Sign In</div>
 
-            <form class="register" method="post">
-              <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="text" class="form-control" id="Email" name="Email" placeholder="Email" oninput="validateEmail()" style="background-position: right; background-repeat: no-repeat;">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" oninput="validatePassword()" style="background-position: right; background-repeat: no-repeat;" >
-              </div>
-              <button type="submit" class="btn btn-primary">Login</button>
-              <button class="btn btn-primary"><a href="signUp.html" style="color: white">Create an Account</a></button>
-              <div class="form-check" style="margin-top:20px" >
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: 2px">
-                <label class="form-check-label" for="exampleCheck1">Remember password</label>
-              </div>
-              <div>
-                <a href="#">Forget password</a>
-              </div>
-            </form>
-					</div>
+						<?php 
+							if (isset($_SESSION["active"]) && $_SESSION["active"] == 1) {
+								/////////////////////////// Checking the login status ///////////////////////////////
+						?>
+								<div class="contact_form_title">You are logged in.</div>
+						<?php
+							}else {
+						?>	
+								<div class="contact_form_title">Sign In</div>
+								<form class="register" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+									<div class="form-group">
+										<label for="Email">Email</label>
+										<input type="text" class="form-control" id="Email" name="email" placeholder="Email" oninput="validateEmail()" style="background-position: right; background-repeat: no-repeat;">
+									</div>
+									<div class="form-group">
+										<label for="password">Password</label>
+										<input type="password" class="form-control" id="password" name="password" placeholder="Password" oninput="validatePassword()" style="background-position: right; background-repeat: no-repeat;" >
+									</div>
+									<button type="submit" name="submit" class="btn btn-primary">Login</button>
+									<button class="btn btn-primary" type="submit"><a href="signUp.php" style="color: white">Create an Account</a></button>
+									<div class="form-check" style="margin-top:20px" >
+										<input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: 2px">
+										<label class="form-check-label" for="exampleCheck1">Remember password</label>
+									</div>
+									<div>
+										<a href="#">Forget password</a>
+									</div>
+								</form>
+						<?php
+							}
+						?>
+							
 				</div>
 			</div>
 		</div>
