@@ -1,6 +1,6 @@
 <?php
 function getLocations(){
-  require_once('db/dbconn.php');
+  require('db/dbconn.php');
   $sql_locations = "SELECT * FROM locations";
   $result_locations = $conn->query($sql_locations);
 

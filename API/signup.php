@@ -1,4 +1,5 @@
 <?php
+require_once('keepSession.php');
 require_once('db/dbconn.php');
 require_once('getVerificationCode.php');
 
@@ -14,10 +15,31 @@ require_once('getVerificationCode.php');
 
   if ($conn->query($sql) === TRUE) {
       $_SESSION["return"] = "New account created. Check your email for verification email.";
-      echo "success";
+
+
+        /*
+
+        ///////////////// Get last Id ////////////////////////////////
+        $sql_get_id = "SELECT MAX(id) FROM users";
+        $result = $conn->query($sql_get_id);
+        while ($row = $result->fetch_assoc()) {
+            $user_id = $row["id"];
+        }
+
+
+        ///////////////// Sending Verification code //////////////////
+        $msg ="Click the bellow link to activate your Buy n Sell account. <br>
+            http://buynsell.com/API/verifyEmail.php?code=".$email_verification_code."&s=".$user_id;
+        // use wordwrap() if lines are longer than 70 characters
+        $msg = wordwrap($msg,70);
+        // send email
+        mail($email,"Buy n Sell email ",$msg);
+
+        */
+
+      header('Location: ../messageView.php');
   } else {
       $_SESSION["return"] = "Something went wrong";
-      echo "f";
   }
 
 $conn->close();

@@ -1,15 +1,13 @@
 <?php
 require('API/keepSession.php');
 require('API/getCatagories.php');
-require('API/getDistricts.php');
-require('API/getLocations.php');
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buy n Sell-Sign Up</title>
+<title><?php echo $_SESSION["return"]; ?></title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -256,18 +254,12 @@ require('API/getLocations.php');
 </nav>
   </div>
 
-
-	<!-- Contact Form -->
-	<?php
-		if (isset($_SESSION["active"]) && $_SESSION["active"] == 1) {
-			////////////////////////////// If logged in ///////////////////////////////
-			?>
 	<div class="contact_form">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="contact_form_container">
-						<div class="contact_form_title">You are already signed in</div>
+						<div class="contact_form_title"><?php echo $_SESSION["return"]; ?></div>
 
 					</div>
 				</div>
@@ -275,89 +267,6 @@ require('API/getLocations.php');
 		</div>
 		<div class="panel"></div>
 	</div>
-			<?php
-			
-		}else {
-			///////////////////////////// If not logged in ///////////////////////////
-			?>
-	<div class="contact_form">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="contact_form_container">
-						<div class="contact_form_title">Sign Up</div>
-
-            <form class="register" method="post" action="API/signUp.php">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="firstName">First Name</label>
-                  <input type="text" name="fname" class="form-control" id="fname" placeholder="First name" onchange="validateFname()" style="background-position: right; background-repeat: no-repeat;">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" name="lname" class="form-control" id="lname" placeholder="Last name" onchange="validateLname()" style="background-position: right; background-repeat: no-repeat;">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="text" name="email" class="form-control" id="Email" name="Email" placeholder="Email" oninput="validateEmail()" style="background-position: right; background-repeat: no-repeat;">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password" oninput="validatePassword()" style="background-position: right; background-repeat: no-repeat;" >
-              </div>
-              <div class="form-group">
-                <label for="ConfirmPassword">Confirm Password</label>
-                <input type="password" class="form-control" id="Confirm" placeholder="Confirm password" oninput="validateConfirmPassword()" style="background-position: right; background-repeat: no-repeat;">
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputCity">District</label>
-                  <select id="inputDistrict" class="form-control" style="margin-left:-3px">
-                    <option value="0" selected>Choose...</option>
-                    <?php
-					///////////////////// The district list ////////////////////////////////////////
-						$result_districts = getDistricts();
-							while($row_districts = $result_districts->fetch_assoc()) {
-					?>
-					
-					<option value="<?php echo $row_districts["district"]; ?>"><?php echo $row_districts["district"]; ?></option>
-
-					<?php
-							}
-					?>
-                  </select>
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="inputState">location</label>
-                  <select name="location" id="inputState" class="form-control" style="margin-left:-3px">
-                    <option selected>Choose...</option>
-                    <?php
-					///////////////////// The location list ////////////////////////////////////////
-						$result_locations = getLocations();
-							while($row_locations = $result_locations->fetch_assoc()) {
-					?>
-					
-					<option value="<?php echo $row_locations["id"]; ?>"><?php echo $row_locations["area"]; ?></option>
-
-					<?php
-							}
-					?>
-                  </select>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Sign up</button>
-            </form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="panel"></div>
-	</div>
-
-			<?php
-		}
-	?>
 	
 
 
