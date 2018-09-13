@@ -1,5 +1,5 @@
 <?php
-include_once '../db/dbconn.php';
+require('API/db/dbconn.php');
 
 function getAdsHomeLeft(){
   $sql_left_panel = "SELECT * FROM adverts LIMIT 3";

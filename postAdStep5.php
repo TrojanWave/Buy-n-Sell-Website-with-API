@@ -254,8 +254,8 @@
 							</ul>
 
 						</form>
-						<form class="" action="index.html" method="post">
-							<a href="index.php"><button type="submit" class="btn btn-primary">Finish</button></a>
+						<form class="" action="index.php" method="post">
+							<button type="submit" class="btn btn-primary">Finish</button>
 						</form>
 
 
