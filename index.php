@@ -108,6 +108,18 @@ require('API/loginCheck.php');
 									</div>
 								</div>
 							</div>
+
+							<!-- Log out -->
+							<div class="cart" style="margin-left: 20px;">
+								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+									<div class="cart_icon" style="margin-right: -20px;">
+										<img src="images/logout.png" alt="">
+									</div>
+									<div class="cart_content">
+										<div class="cart_text"><a href="API/logout.php">Logout</a></div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<?php
@@ -262,10 +274,10 @@ require('API/loginCheck.php');
 				<div class="banner_product_image"><img src="images/banner_product.png" alt=""></div>
 				<div class="col-lg-5 offset-lg-4 fill_height">
 					<div class="banner_content">
-						<h1 class="banner_text">new era of smartphones</h1>
-						<div class="banner_price"><span>$530</span>$460</div>
-						<div class="banner_product_name">Apple Iphone 6s</div>
-						<div class="button banner_button"><a href="#">Shop Now</a></div>
+						<h1 class="banner_text">free classifieds for all</h1>
+						<div class="banner_price">Sell and Buy<br>Request your need</div>
+						<div class="button banner_button"><a href="#">Post Your Ad</a></div>
+						<div class="button banner_button"><a href="#">Post a Request</a></div>
 					</div>
 				</div>
 			</div>
