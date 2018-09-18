@@ -7,6 +7,8 @@ function getImages($id, $count){
 
   if ($result_left_panel->num_rows > 0) {
       return $result_left_panel;
+  }else{
+      return 1;
   }
 }
 

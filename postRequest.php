@@ -1,3 +1,19 @@
+<?php
+require('API/keepSession.php');
+require('API/getCatagories.php');
+require('API/loginCheck.php');
+require('API/postRequest.php');
+
+	$returnUrl = "postRequest.php";
+
+	checkLogin($returnUrl);
+
+	if (isset($_POST["submit"])) {
+		submitRequest($user_id);
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -225,34 +241,30 @@
 						<div class="contact_form_title">Post a Request</div>
             <div><p>In here,You can post a request about your need according to your conditions.Then sellers will be send informations of products which are satisfied your request. </p></div>
 
-            <form class="register" method="post">
+            <form class="register" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
               <div class="form-group">
                 <label for="inputCity">Catogory</label>
-                <select id="inputState" class="form-control" style="margin-left:-5px">
-                  <option selected>Choose...</option>
-                  <option>Vehicles</option>
-                  <option>Mobile phones & Tabs</option>
-									<option>Computers & Laptops</option>
-									<option>Electronic Accessories</opton>
-									<option>Camera</option>
-									<option>ronics </option>
-									<option>Properties</option>
-									<option>Fashion</option>
-									<option>Sports</option>
-									<option>Animals</option>
-									<option>Jobs</option>
-                  <option>Education</option>
-                  <option>Food & Agriculture</option>
+                <select name="catagory" id="inputState" class="form-control" style="margin-left:-5px">
+                  <option value="0" selected>Choose...</option>
+				  <?php
+						///////////////////// The catagory list ////////////////////////////////////////
+						$result_catagories = getCatagories();
+							while($row_catagories = $result_catagories->fetch_assoc()) {
+							?>
+								<option value="<?php echo $row_catagories["id"]; ?>"><?php echo $row_catagories["name"]; ?></option>
+							<?php
+							}
+					?>
                 </select>
               </div>
 
               <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" placeholder="Ex: Leagoo M6 5.7">
+                <input name="title" type="text" class="form-control" placeholder="Ex: Leagoo M6 5.7">
               </div>
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control"></textarea>
+                <textarea name="description" class="form-control"></textarea>
               </div>
 
                 <div class="form-group">
@@ -260,18 +272,18 @@
                   <div class="form-inline">
 
                       <lable style="margin-right: 15px">Minimum </lable>
-                      <input type="number" class="form-control col-md-3">
+                      <input name="min_price" type="number" class="form-control col-md-3">
                       <div class="col-1">-</div>
                       <lable style="margin-right: 15px">Maximum </lable>
-                      <input type="number" class="form-control col-md-3">
+                      <input name="max_price" type="number" class="form-control col-md-3">
 
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="contactInfo">Contact Number</label>
-                  <input type="text" class="form-control" placeholder="Ex: 071 XXX XXXX">
+                  <input name="contact" type="text" class="form-control" placeholder="Ex: 071 XXX XXXX">
                 </div>
-              <button type="submit" class="btn btn-primary">Post Request</button>
+              <button name="submit" type="submit" class="btn btn-primary">Post Request</button>
             </form>
 					</div>
 				</div>

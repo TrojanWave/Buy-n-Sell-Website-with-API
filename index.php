@@ -58,7 +58,7 @@ require('API/loginCheck.php');
 							<div class="header_search_content">
 								<div class="header_search_form_container">
 									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+										<input type="search" required="required" class="header_search_input" placeholder="Search...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">All Categories</span>
@@ -192,7 +192,7 @@ require('API/loginCheck.php');
 									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="requestList.html">Requests<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="postAdStep1.php">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postRequest.html">Post a Request<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postRequest.php">Post a Request<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
@@ -223,7 +223,7 @@ require('API/loginCheck.php');
 
 							<div class="page_menu_search">
 								<form action="#">
-									<input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
+									<input type="search" required="required" class="page_menu_search_input" placeholder="Search...">
 								</form>
 							</div>
 							<ul class="page_menu_nav">
@@ -252,10 +252,10 @@ require('API/loginCheck.php');
 									<a href="requestList.html">Requests<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postAdStep1.html">Post your Ad<i></i></a>
+									<a href="postAdStep1.php">Post your Ad<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postRequest.html">Post a Request<i></i></a>
+									<a href="postRequest.php">Post a Request<i></i></a>
 								</li>
 							</ul>
 						</div>
@@ -304,11 +304,16 @@ require('API/loginCheck.php');
 								<?php
 									$result_left_panel = getAdsHomeLeft();
 									while($row_left_panel = $result_left_panel->fetch_assoc()) {
-										////////////////// Get Images ///////////////////
-										$result_images_left_panel = getImages($row_left_panel["id"], 1);
+
+										if (getImages($row_left_panel["id"], 1)) {
+											////////////////// Get Images ///////////////////
+											$result_images_left_panel = getImages($row_left_panel["id"], 1);
 											while($row_images_left = $result_images_left_panel->fetch_assoc()){
 												$image_file_left = $row_images_left["file_name"];
 											}
+										}else {
+											$image_file_left = "no-image-found.gif";
+										}
 								?>
 								<!-- Deals Item -->
 								<div class="owl-item deals_item">
@@ -365,10 +370,14 @@ require('API/loginCheck.php');
 									<div class="featured_slider_item">
 										<div class="border_active"></div>
 										<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-											<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="uploads/<?php echo $image_file_right; ?>" alt=""></div>
-											<div class="product_content">
-												<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
-												<div class="product_name"><div><a href="product.html"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+											<a href="product.php?id=<?php echo $row_right_panel["id"]; ?>">
+												<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="uploads/<?php echo $image_file_right; ?>" alt=""></div>
+											</a>
+												<div class="product_content">
+												<a href="product.php?id=<?php echo $row_right_panel["id"]; ?>">
+													<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
+													<div class="product_name"><div><a href="product.html"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+												</a>
 												<div class="product_extras">
 													<button class="product_cart_button">Add to Cart</button>
 												</div>

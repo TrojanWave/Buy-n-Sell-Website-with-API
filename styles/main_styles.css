@@ -1670,7 +1670,7 @@ select option
 {
 	display: block;
 	position: relative;
-	max-width: 100%;
+	max-width: 60%;
 }
 .product_content
 {

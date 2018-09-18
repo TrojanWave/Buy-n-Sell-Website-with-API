@@ -2,6 +2,7 @@
 	require('API/keepSession.php');
 	require('API/getLocations.php');
 	require('API/getCatagories.php');
+	require('API/getRequests.php');
 	require('API/loginCheck.php');
 
 
@@ -290,6 +291,11 @@
 						  </div>
 						  <button name="submit" type="submit" class="btn btn-primary">Continue</button>
 						</form>
+
+			<?php
+				if (getRequestsByCatagory($catagory)) {
+			?>
+
 						<div class="container" style="margin-top: 20px">
 							<div class="row">
 								<div class="col align-self-center">
@@ -299,27 +305,35 @@
 						</div>
 						<hr>
 						<div>
+							<br>
 							<h3>Consider these requests from other people</h3>
 						</div>
+
+						<?php
+							///////////////////// The request list ////////////////////////////////////////
+							$result_requests_by_catagory = getRequestsByCatagory($catagory);
+								while($row_requests_by_catagory = $result_requests_by_catagory->fetch_assoc()) {
+								?>
+
 						<div class="cart_items">
 							<ul class="cart_list">
 								<li class="cart_item clearfix">
 									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 										<div class="cart_item_name cart_info_col">
 											<div class="cart_item_title">Title</div>
-											<div class="cart_item_text">MacBook Air 1</div>
+											<div class="cart_item_text"><?php echo $row_requests_by_catagory["title"]; ?></div>
 										</div>
 										<div class="cart_item_color cart_info_col">
 											<div class="cart_item_title">Description</div>
-											<div class="cart_item_text">Qty 2,Gold color</div>
+											<div class="cart_item_text"><?php echo $row_requests_by_catagory["description"]; ?></div>
 										</div>
 										<div class="cart_item_quantity cart_info_col">
 											<div class="cart_item_title">Price Range</div>
-											<div class="cart_item_text">Rs. 12000 - Rs.27000</div>
+											<div class="cart_item_text">Rs. <?php echo $row_requests_by_catagory["price_min"]; ?> - Rs.<?php echo $row_requests_by_catagory["price_max"]; ?></div>
 										</div>
 										<div class="cart_item_price cart_info_col">
 											<div class="cart_item_title">Contact Info</div>
-											<div class="cart_item_text">077 654 1112</div>
+											<div class="cart_item_text">0<?php echo $row_requests_by_catagory["contact"]; ?></div>
 										</div>
 									</div>
 									<div class="cart_item_total cart_info_col">
@@ -332,37 +346,15 @@
 								</li>
 							</ul>
 						</div>
-						<div class="cart_items">
-							<ul class="cart_list">
-								<li class="cart_item clearfix">
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Title</div>
-											<div class="cart_item_text">MacBook Air 1</div>
-										</div>
-										<div class="cart_item_color cart_info_col">
-											<div class="cart_item_title">Description</div>
-											<div class="cart_item_text">Qty 1,black color</div>
-										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Price Range</div>
-											<div class="cart_item_text">Rs. 25000 - Rs.27500</div>
-										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Contact Info</div>
-											<div class="cart_item_text">071 214 1384</div>
-										</div>
-									</div>
-									<div class="cart_item_total cart_info_col">
-										<div class="cart_item_text">
-											<div class="cart_item_total cart_info_col">
-												<button type="button" class="button cart_button_checkout">View Request</button>
-											</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
+								<?php
+								}
+						?>
+
+					<?php
+				}
+					?>
+
+
 					</div>
 				</div>
 			</div>
