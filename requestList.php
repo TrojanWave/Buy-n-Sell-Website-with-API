@@ -1,3 +1,8 @@
+<?php
+	require('API/keepSession.php');
+	require('API/getRequests.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,62 +219,41 @@
 				<div class="col-lg-10 offset-lg-1">
 					<div class="cart_container">
 						<div class="cart_title">Requests</div>
-						<!--request item 1-->
-						<div class="cart_items">
-							<ul class="cart_list">
-								<li class="cart_item clearfix">
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Title</div>
-											<div class="cart_item_text">MacBook Air 13</div>
+						<!--request item -->
+
+						<?php
+							//////////////////////// Get request list /////////////////////////
+							$request_result = getRequests();
+							while ($row_requests = $request_result->fetch_assoc()) {
+						?>
+							<div class="cart_items">
+								<ul class="cart_list">
+									<li class="cart_item clearfix">
+										<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+											<div class="cart_item_name cart_info_col">
+												<div class="cart_item_title">Title</div>
+												<div class="cart_item_text"><?php echo $row_requests["title"]; ?></div>
+											</div>
+											<div class="cart_item_quantity cart_info_col">
+												<div class="cart_item_title">Price Range</div>
+												<div class="cart_item_text">Rs.<?php echo $row_requests["price_min"]; ?>-<?php echo $row_requests["price_max"]; ?></div>
+											</div>
+											<div class="cart_item_price cart_info_col">
+												<div class="cart_item_title">Contact</div>
+												<div class="cart_item_text">0<?php echo $row_requests["contact"]; ?> </div>
+											</div>
 										</div>
-										<div class="cart_item_color cart_info_col">
-											<div class="cart_item_title">Description</div>
-											<div class="cart_item_text">Qty 1, gold color</div>
+										<div class="cart_buttons">
+											<a href="request.php?id=<?php echo $row_requests["id"]; ?>">
+												<button type="button" class="button cart_button_checkout">view Request</button>
+											</a>
 										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Price Range</div>
-											<div class="cart_item_text">Rs.12000-15000</div>
-										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Contact</div>
-											<div class="cart_item_text">071 234 5544 </div>
-										</div>
-									</div>
-                  <div class="cart_buttons">
-      							<button type="button" class="button cart_button_checkout">view Request</button>
-      						</div>
-								</li>
-							</ul>
-						</div>
-						<!--request item 2-->
-						<div class="cart_items">
-							<ul class="cart_list">
-                <li class="cart_item clearfix">
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Title</div>
-											<div class="cart_item_text">bealpoo headphone 13</div>
-										</div>
-										<div class="cart_item_color cart_info_col">
-											<div class="cart_item_title">Description</div>
-											<div class="cart_item_text">Qty 2, pink color</div>
-										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Price Range</div>
-											<div class="cart_item_text">Rs.22000-30000</div>
-										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Contact</div>
-											<div class="cart_item_text">071 244 5444 </div>
-										</div>
-									</div>
-                  <div class="cart_buttons">
-      							<button type="button" class="button cart_button_checkout">view Request</button>
-      						</div>
-								</li>
-							</ul>
-						</div>
+									</li>
+								</ul>
+							</div>
+						<?php
+							}
+						?>
 					</div>
 				</div>
 			</div>

@@ -50,7 +50,7 @@ require('API/getRequest.php');
 					<!-- Logo -->
 					<div class="col-lg-3 col-sm-6 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo" style="padding-left: 90px"><a href="index.html">Buy n Sell</a></div>
+							<div class="logo" style="padding-left: 90px"><a href="index.php">Buy n Sell</a></div>
 						</div>
 					</div>
 
@@ -88,7 +88,7 @@ require('API/getRequest.php');
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="wishlist.html">Wishlist</a></div>
+									<div class="wishlist_text"><a href="wishlist.php">Wishlist</a></div>
 									<div class="wishlist_count">115</div>
 								</div>
 							</div>
@@ -101,7 +101,7 @@ require('API/getRequest.php');
 										<div class="cart_count"><span>10</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="cart.html">Cart</a></div>
+										<div class="cart_text"><a href="cart.php">Cart</a></div>
 										<div class="cart_price">$85</div>
 									</div>
 								</div>
@@ -130,7 +130,7 @@ require('API/getRequest.php');
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="viewCatogoryComputers&Laptops.html">Vehicles<i class="fas fa-chevron-right ml-auto"></i></a></li>
+									<li><a href="viewCatogoryComputers&Laptops.php">Vehicles<i class="fas fa-chevron-right ml-auto"></i></a></li>
 								</ul>
 							</div>
 
@@ -138,10 +138,10 @@ require('API/getRequest.php');
 
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="requestList.html">Requests<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postAdStep1.html">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postRequest.html">Post a Request<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="requestList.php">Requests<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postAdStep1.php">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postRequest.php">Post a Request<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
@@ -195,16 +195,16 @@ require('API/getRequest.php');
 									</ul>
 								</li>-->
 								<li class="page_menu_item">
-									<a href="index.html">Home<i class="fa fa-angle-down"></i></a>
+									<a href="index.php">Home<i class="fa fa-angle-down"></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="requestList.html">Requests<i></i></a>
+									<a href="requestList.php">Requests<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postAdStep1.html">Post your Ad<i></i></a>
+									<a href="postAdStep1.php">Post your Ad<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postRequest.html">Post a Request<i></i></a>
+									<a href="postRequest.php">Post a Request<i></i></a>
 								</li>
 							</ul>
 						</div>
@@ -227,7 +227,7 @@ require('API/getRequest.php');
 			?>
 
 				<!-- Description -->
-				<div class="col-lg-5 order-3">
+				<div class="col-lg-5 order-3" style="border: 2px solid #A19189; padding: 15px; border-radius: 10px;">
 					<div class="product_description">
 						<div class="product_category"><?php echo getCatagoryName($row_request["ad_catagory"]); ?></div>
 						<div class="product_name"><?php echo $row_request["title"]; ?></div>

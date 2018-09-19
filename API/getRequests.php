@@ -9,4 +9,14 @@ function getRequestsByCatagory($catagory){
   }
 }
 
+function getRequests(){
+  require('db/dbconn.php');
+  $sql_requests = "SELECT * FROM requests ORDER BY id DESC";
+  $result_requests = $conn->query($sql_requests);
+
+  if ($result_requests->num_rows > 0) {
+      return $result_requests;
+  }
+}
+
  ?>

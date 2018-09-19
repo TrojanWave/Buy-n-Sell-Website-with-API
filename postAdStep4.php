@@ -323,10 +323,6 @@
 											<div class="cart_item_title">Title</div>
 											<div class="cart_item_text"><?php echo $row_requests_by_catagory["title"]; ?></div>
 										</div>
-										<div class="cart_item_color cart_info_col">
-											<div class="cart_item_title">Description</div>
-											<div class="cart_item_text"><?php echo $row_requests_by_catagory["description"]; ?></div>
-										</div>
 										<div class="cart_item_quantity cart_info_col">
 											<div class="cart_item_title">Price Range</div>
 											<div class="cart_item_text">Rs. <?php echo $row_requests_by_catagory["price_min"]; ?> - Rs.<?php echo $row_requests_by_catagory["price_max"]; ?></div>
@@ -335,12 +331,10 @@
 											<div class="cart_item_title">Contact Info</div>
 											<div class="cart_item_text">0<?php echo $row_requests_by_catagory["contact"]; ?></div>
 										</div>
-									</div>
-									<div class="cart_item_total cart_info_col">
-										<div class="cart_item_text">
-											<div class="cart_item_total cart_info_col">
-												<a href="request.php?id=<?php echo $row_requests_by_catagory["id"]; ?>"><button type="button" class="button cart_button_checkout">View Request</button></a>
-											</div>
+										<div class="cart_item_price cart_info_col" style="padding-top: 15px; padding-left: 40px;">
+											<a href="request.php?id=<?php echo $row_requests_by_catagory["id"]; ?>">
+												<button type="button" class="button cart_button_checkout">View Request</button>
+											</a>
 										</div>
 									</div>
 								</li>
