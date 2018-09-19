@@ -339,7 +339,7 @@
 									<div class="cart_item_total cart_info_col">
 										<div class="cart_item_text">
 											<div class="cart_item_total cart_info_col">
-												<button type="button" class="button cart_button_checkout">View Request</button>
+												<a href="request.php?id=<?php echo $row_requests_by_catagory["id"]; ?>"><button type="button" class="button cart_button_checkout">View Request</button></a>
 											</div>
 										</div>
 									</div>
