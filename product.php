@@ -276,8 +276,14 @@ require('API/getAdsHomeRightPanel.php');
 							}
 						?>
 								<div class="button_container">
-									<button type="button" class="button cart_button">Add to Cart</button>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
+									<a href="API/adToCart.php?id=<?php echo $row_ad["id"]; ?>">
+										<button type="button" class="button cart_button">Add to Cart</button>
+									</a>
+									<a href="API/addToWishList.php?id=<?php echo $row_ad["id"]; ?>">
+										<div class="product_fav">
+											<i class="fas fa-heart"></i>
+										</div>
+									</a>
 								</div>
 							</form>
 						</div>

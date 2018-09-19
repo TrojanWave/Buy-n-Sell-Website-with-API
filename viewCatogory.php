@@ -4,6 +4,13 @@ require('API/getCatagories.php');
 require('API/getAdsHomeRightPanel.php');
 require('API/getAdImages.php');
 
+	if (isset($_GET["catagory"])) {
+		$catagory_id = $_GET["catagory"];
+	}else{
+		$_SESSION["return"] = "Oops ! Something went wrong.";
+		header('Location: messageView.php');
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -224,7 +231,7 @@ require('API/getAdImages.php');
 						<div class="cart_title">Computers & Laptops</div>
 						<!--Ad item -->
 						<?php
-							$result_ads = getAdsHomeRightAll();
+							$result_ads = getAdsHomeRight($catagory_id);
 							while($row_ads = $result_ads->fetch_assoc()) {
 								////////////////// Get Images ///////////////////
 								$result_images_ad = getImages($row_ads["id"], 1);

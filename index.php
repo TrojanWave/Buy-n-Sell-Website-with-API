@@ -275,7 +275,7 @@ require('API/loginCheck.php');
 				<div class="col-lg-5 offset-lg-4 fill_height">
 					<div class="banner_content">
 						<h1 class="banner_text">free classifieds for all</h1>
-						<div class="banner_price">Sell and Buy<br>Request your need</div>
+						<div class="banner_price">Buy and Sell or<br>Request your need</div>
 						<div class="button banner_button"><a href="postAdStep1.php">Post Your Ad</a></div>
 						<div class="button banner_button"><a href="postRequest.php">Post a Request</a></div>
 					</div>
@@ -376,13 +376,19 @@ require('API/loginCheck.php');
 												<div class="product_content">
 												<a href="product.php?id=<?php echo $row_right_panel["id"]; ?>">
 													<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
-													<div class="product_name"><div><a href="product.php"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+													<div class="product_name"><div><a href="product.php?id=<?php echo $row_right_panel["id"]; ?>"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
 												</a>
 												<div class="product_extras">
-													<button class="product_cart_button">Add to Cart</button>
+													<a href="API/addToCart.php?id=<?php echo $row_right_panel["id"]; ?>">
+														<button class="product_cart_button">Add to Cart</button>
+													</a>
 												</div>
 											</div>
-											<div class="product_fav"><i class="fas fa-heart"></i></div>
+											<a href="API/addToWishList.php?id=<?php echo $row_right_panel["id"]; ?>">
+												<div class="product_fav">
+													<i class="fas fa-heart"></i>
+												</div>
+											</a>
 										</div>
 									</div>
 								<?php
@@ -414,12 +420,18 @@ require('API/loginCheck.php');
 												<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="uploads/<?php echo $image_file_right; ?>" alt=""></div>
 												<div class="product_content">
 													<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
-													<div class="product_name"><div><a href="product.php"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+													<div class="product_name"><div><a href="product.php?id=<?php echo $row_right_panel["id"]; ?>"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
 													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
+														<a href="API/addToCart.php?id=<?php echo $row_right_panel["id"]; ?>">
+															<button class="product_cart_button">Add to Cart</button>
+														</a>
 													</div>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												<a href="API/addToWishList.php?id=<?php echo $row_right_panel["id"]; ?>">
+													<div class="product_fav">
+														<i class="fas fa-heart"></i>
+													</div>
+												</a>
 											</div>
 										</div>
 									<?php
@@ -452,12 +464,18 @@ require('API/loginCheck.php');
 												<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="uploads/<?php echo $image_file_right; ?>" alt=""></div>
 												<div class="product_content">
 													<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
-													<div class="product_name"><div><a href="product.php"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+													<div class="product_name"><div><a href="product.php?id=<?php echo $row_right_panel["id"]; ?>"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
 													<div class="product_extras">
+													<a href="API/addToCart.php?id=<?php echo $row_right_panel["id"]; ?>">
 														<button class="product_cart_button">Add to Cart</button>
+													</a>
 													</div>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												<a href="API/addToWishList.php?id=<?php echo $row_right_panel["id"]; ?>">
+													<div class="product_fav">
+														<i class="fas fa-heart"></i>
+													</div>
+												</a>
 											</div>
 										</div>
 									<?php
