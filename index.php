@@ -5,6 +5,9 @@ require('API/getAdsHomeLeftPanel.php');
 require('API/getAdsHomeRightPanel.php');
 require('API/getAdImages.php');
 require('API/loginCheck.php');
+require('API/getCountWishList.php');
+require('API/getCountCart.php');
+require('API/getTotalCart.php');
 
 	$_SESSION["returnUrl"] = "index.php";
 
@@ -91,7 +94,7 @@ require('API/loginCheck.php');
 								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
 								<div class="wishlist_content">
 									<div class="wishlist_text"><a href="wishlist.php">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
+									<div class="wishlist_count"><?php echo getCountWishList($_SESSION["user_id"]); ?></div>
 								</div>
 							</div>
 
@@ -100,11 +103,11 @@ require('API/loginCheck.php');
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span><?php echo getCountCart($_SESSION["user_id"]); ?></span></div>
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="cart.php">Cart</a></div>
-										<div class="cart_price">$85</div>
+										<div class="cart_price">Rs: <?php echo getCartTotal($_SESSION["user_id"]); ?></div>
 									</div>
 								</div>
 							</div>

@@ -1,11 +1,11 @@
 <?php
-include_once '../db/dbconn.php';
 
-function getAdsHomeRight($catagory){
+function getCartTotal($user_id){
+  require('API/db/dbconn.php');
   $sql_cart_total = "SELECT advert_id FROM shopping_cart WHERE user_id = '$user_id'";
   $result_cart_total = $conn->query($sql_cart_total);
 
-  $cart_total = 0;
+  $total = 0;
 
   if ($result_cart_total->num_rows > 0) {
     while($row_cart_total = $result_cart_total->fetch_assoc()) {
@@ -22,7 +22,7 @@ function getAdsHomeRight($catagory){
     }
   }
 
-    return $cart_total;
+    return $total;
 
 }
 

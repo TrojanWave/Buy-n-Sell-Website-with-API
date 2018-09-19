@@ -1,7 +1,23 @@
+<?php
+require('API/keepSession.php');
+require('API/getCatagories.php');
+require('API/getAdsHomeRightPanel.php');
+require('API/getAdImages.php');
+require('API/getWishList.php');
+require('API/getAd.php');
+require('API/loginCheck.php');
+
+	$returnUrl = "postAdStep1.php";
+
+	checkLogin($returnUrl);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buy n Sell-Wishlist</title>
+<title>Wish List</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -10,8 +26,6 @@
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
-<script type="text/javascript" src="js/validation.js"></script>
-
 
 </head>
 
@@ -21,7 +35,7 @@
 
 	<!-- Header -->
 
-  <header class="header">
+	<header class="header">
 
 		<!-- Top Bar -->
 
@@ -34,7 +48,7 @@
 					<!-- Logo -->
 					<div class="col-lg-3 col-sm-6 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo" style="padding-left: 90px"><a href="index.html">Buy n Sell</a></div>
+							<div class="logo" style="padding-left: 90px"><a href="index.php">Buy n Sell</a></div>
 						</div>
 					</div>
 
@@ -72,7 +86,7 @@
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="wishlist.html">Wishlist</a></div>
+									<div class="wishlist_text"><a href="wishlist.php">Wishlist</a></div>
 									<div class="wishlist_count">115</div>
 								</div>
 							</div>
@@ -85,7 +99,7 @@
 										<div class="cart_count"><span>10</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="cart.html">Cart</a></div>
+										<div class="cart_text"><a href="cart.php">Cart</a></div>
 										<div class="cart_price">$85</div>
 									</div>
 								</div>
@@ -114,7 +128,15 @@
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="viewCatogoryComputers&Laptops.html">Vehicles<i class="fas fa-chevron-right ml-auto"></i></a></li>
+									<?php
+									///////////////////// The catagory list ////////////////////////////////////////
+									$result_catagories = getCatagories();
+										while($row_catagories = $result_catagories->fetch_assoc()) {
+											?>
+											<li><a href="viewCatogory.php?catagory=<?php echo $row_catagories["id"]; ?>"><?php echo $row_catagories["name"]; ?><i class="fas <?php echo $row_catagories["fa_icon"]; ?> ml-auto"></i></a></li>
+										<?php
+										}
+									?>
 								</ul>
 							</div>
 
@@ -122,10 +144,10 @@
 
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="requestList.html">Requests<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postAdStep1.html">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postRequest.html">Post a Request<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="requestList.php">Requests<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postAdStep1.php">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postRequest.php">Post a Request<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
@@ -179,16 +201,16 @@
 									</ul>
 								</li>-->
 								<li class="page_menu_item">
-									<a href="index.html">Home<i class="fa fa-angle-down"></i></a>
+									<a href="index.php">Home<i class="fa fa-angle-down"></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="requestList.html">Requests<i></i></a>
+									<a href="requestList.php">Requests<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postAdStep1.html">Post your Ad<i></i></a>
+									<a href="postAdStep1.php">Post your Ad<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postRequest.html">Post a Request<i></i></a>
+									<a href="postRequest.php">Post a Request<i></i></a>
 								</li>
 							</ul>
 						</div>
@@ -198,88 +220,72 @@
 		</div>
 	</header>
 
-  <!--wishlist-->
-  <div class="cart_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-          <div class="cart_container">
-            <div class="cart_title">WishList</div>
-            <div class="cart_items">
-              <ul class="cart_list">
-                <li class="cart_item clearfix">
-                  <div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
-                  <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                    <div class="cart_item_name cart_info_col">
-                      <div class="cart_item_title">Name</div>
-                      <div class="cart_item_text">MacBook Air 13</div>
-                    </div>
-                    <div class="cart_item_color cart_info_col">
-                      <div class="cart_item_title">Color</div>
-                      <div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
-                    </div>
-                    <div class="cart_item_quantity cart_info_col">
-                      <div class="cart_item_title">Quantity</div>
-                      <div class="cart_item_text">1</div>
-                    </div>
-                    <div class="cart_item_price cart_info_col">
-                      <div class="cart_item_title">Price</div>
-                      <div class="cart_item_text">$2000</div>
-                    </div>
-                    <div><i class="fa fa-trash" aria-hidden="true"></i></div>
-                  </div>
-
-                  <div class="cart_buttons">
-                    <button type="button" class="button cart_button_clear">Add to Cart</button>
-                    <button type="button" class="button cart_button_checkout">Buy Online</button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="cart_items">
-              <ul class="cart_list">
-                <li class="cart_item clearfix">
-                  <div class="cart_item_image"><img src="images/best_3.png" alt=""></div>
-                  <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                    <div class="cart_item_name cart_info_col">
-                      <div class="cart_item_title">Name</div>
-                      <div class="cart_item_text">MacBook Air 13</div>
-                    </div>
-                    <div class="cart_item_color cart_info_col">
-                      <div class="cart_item_title">Color</div>
-                      <div class="cart_item_text"><span style="background-color:#D69475"></span>Brown</div>
-                    </div>
-                    <div class="cart_item_quantity cart_info_col">
-                      <div class="cart_item_title">Quantity</div>
-                      <div class="cart_item_text">1</div>
-                    </div>
-                    <div class="cart_item_price cart_info_col">
-                      <div class="cart_item_title">Price</div>
-                      <div class="cart_item_text">$1500</div>
-                    </div>
-                    <div><i class="fa fa-trash" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="cart_buttons">
-                    <button type="button" class="button cart_button_clear">Add to Cart</button>
-                    <button type="button" class="button cart_button_checkout">Buy Online</button>
-
-                  </div>
-
-                </li>
-              </ul>
-            </div>
-
-
-
-            <!-- Order Total -->
-
-
-          </div>
-        </div>
-      </div>
-    </div>
+	<!--breadcrumb-->
+  <div class="container" style="margin-top: 25px">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Wish List</a></li>
+      </ol>
+    </nav>
   </div>
+
+	<!-- List -->
+
+	<div class="cart_section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="cart_container">
+						<div class="cart_title">Wish List</div>
+						<!--Ad item -->
+						<?php
+							$result_list = getWishList();
+							while($row_list = $result_list->fetch_assoc()) {
+								////////////////// Get Images ///////////////////
+								$result_images_ad = getImages($row_list["advert_id"], 1);
+									while($row_images_ad = $result_images_ad->fetch_assoc()){
+										$image_file = $row_images_ad["file_name"];
+									}
+
+									/////////// get Ad //////////////////
+									$ad_result = getAd($row_list["advert_id"]);
+									while ($row_ad = $ad_result->fetch_assoc()) {
+
+						?>
+							<a href="product.php?id=<?php echo $row_ad["id"]; ?>">
+								<div class="cart_items">
+									<ul class="cart_list">
+										<li class="cart_item clearfix">
+											<div class="cart_item_image"><img style="height: 120px;" src="uploads/<?php echo $image_file; ?>" alt=""></div>
+											<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+												<div class="cart_item_name cart_info_col">
+													<div class="cart_item_title">Name</div>
+													<div class="cart_item_text"><?php echo $row_ad["ad_title"]; ?></div>
+												</div>
+												<div class="cart_item_price cart_info_col">
+													<div class="cart_item_title">Posted date and time</div>
+													<div class="cart_item_text"><?php echo $row_ad["posted_date"]; ?></div>
+												</div>
+												<div class="cart_item_total cart_info_col">
+													<div class="cart_item_title">Price</div>
+													<div class="cart_item_text">Rs: <?php echo $row_ad["price"]; ?> /-</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</a>
+						<?php
+									}
+							}
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 
 	<!-- Copyright -->
@@ -291,9 +297,9 @@
 
 					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
 						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </div>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</div>
 						<div class="logos ml-sm-auto">
 							<ul class="logos_list">
 								<li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
@@ -318,8 +324,7 @@
 <script src="plugins/greensock/animation.gsap.min.js"></script>
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-<script src="js/contact_custom.js"></script>
+<script src="js/cart_custom.js"></script>
 </body>
 
 </html>

@@ -2,6 +2,9 @@
 require('API/keepSession.php');
 require('API/getCatagories.php');
 require('API/getRequest.php');
+require('API/getCountWishList.php');
+require('API/getCountCart.php');
+require('API/getTotalCart.php');
 
 	$_SESSION["returnUrl"] = "index.php";
 
@@ -60,7 +63,7 @@ require('API/getRequest.php');
 							<div class="header_search_content">
 								<div class="header_search_form_container">
 									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+										<input type="search" required="required" class="header_search_input" placeholder="Search...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">All Categories</span>
@@ -82,14 +85,18 @@ require('API/getRequest.php');
 						</div>
 					</div>
 
-					<!-- Wishlist -->
+					<!-- Wishlist Cart Or Login Signup -->
+					<?php
+				if (isset($_SESSION["active"]) && $_SESSION["active"] == 1) {
+					///////////////////////// If logged in //////////////////////////////
+					?>
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
 								<div class="wishlist_content">
 									<div class="wishlist_text"><a href="wishlist.php">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
+									<div class="wishlist_count"><?php echo getCountWishList($_SESSION["user_id"]); ?></div>
 								</div>
 							</div>
 
@@ -98,16 +105,57 @@ require('API/getRequest.php');
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span><?php echo getCountCart($_SESSION["user_id"]); ?></span></div>
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="cart.php">Cart</a></div>
-										<div class="cart_price">$85</div>
+										<div class="cart_price">Rs: <?php echo getCartTotal($_SESSION["user_id"]); ?></div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Log out -->
+							<div class="cart" style="margin-left: 20px;">
+								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+									<div class="cart_icon" style="margin-right: -20px;">
+										<img src="images/logout.png" alt="">
+									</div>
+									<div class="cart_content">
+										<div class="cart_text"><a href="API/logout.php">Logout</a></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<?php
+				}else {
+					////////////////////////// If not Logged in /////////////////////////////
+					?>
+					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+								<div class="wishlist_icon"><img src="images/login.png" alt=""></div>
+								<div class="wishlist_content">
+									<div class="wishlist_text"><a href="signIn.php">Log in</a></div>
+								</div>
+							</div>
+
+							<!-- Cart -->
+							<div class="cart">
+								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+									<div class="cart_icon">
+										<img src="images/signup.png" alt="">
+									</div>
+									<div class="cart_content">
+										<div class="cart_text"><a href="signUp.php">Create an Account</a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php
+				}
+					?>
 				</div>
 			</div>
 		</div>
@@ -130,7 +178,15 @@ require('API/getRequest.php');
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="viewCatogoryComputers&Laptops.php">Vehicles<i class="fas fa-chevron-right ml-auto"></i></a></li>
+									<?php
+									///////////////////// The catagory list ////////////////////////////////////////
+									$result_catagories = getCatagories();
+										while($row_catagories = $result_catagories->fetch_assoc()) {
+											?>
+											<li><a href="viewCatogory.php?catagory=<?php echo $row_catagories["id"]; ?>"><?php echo $row_catagories["name"]; ?><i class="fas <?php echo $row_catagories["fa_icon"]; ?> ml-auto"></i></a></li>
+										<?php
+										}
+									?>
 								</ul>
 							</div>
 

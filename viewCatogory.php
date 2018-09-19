@@ -3,6 +3,9 @@ require('API/keepSession.php');
 require('API/getCatagories.php');
 require('API/getAdsHomeRightPanel.php');
 require('API/getAdImages.php');
+require('API/getCountWishList.php');
+require('API/getCountCart.php');
+require('API/getTotalCart.php');
 
 	if (isset($_GET["catagory"])) {
 		$catagory_id = $_GET["catagory"];
@@ -16,7 +19,7 @@ require('API/getAdImages.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buyn Sell-Computer & Laptops</title>
+<title>Buyn Sell-<?php echo getCatagoryName($catagory_id); ?></title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -47,7 +50,7 @@ require('API/getAdImages.php');
 					<!-- Logo -->
 					<div class="col-lg-3 col-sm-6 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo" style="padding-left: 90px"><a href="index.html">Buy n Sell</a></div>
+							<div class="logo" style="padding-left: 90px"><a href="index.php">Buy n Sell</a></div>
 						</div>
 					</div>
 
@@ -57,7 +60,7 @@ require('API/getAdImages.php');
 							<div class="header_search_content">
 								<div class="header_search_form_container">
 									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+										<input type="search" required="required" class="header_search_input" placeholder="Search...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">All Categories</span>
@@ -79,14 +82,18 @@ require('API/getAdImages.php');
 						</div>
 					</div>
 
-					<!-- Wishlist -->
+					<!-- Wishlist Cart Or Login Signup -->
+					<?php
+				if (isset($_SESSION["active"]) && $_SESSION["active"] == 1) {
+					///////////////////////// If logged in //////////////////////////////
+					?>
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="wishlist.html">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
+									<div class="wishlist_text"><a href="wishlist.php">Wishlist</a></div>
+									<div class="wishlist_count"><?php echo getCountWishList($_SESSION["user_id"]); ?></div>
 								</div>
 							</div>
 
@@ -95,16 +102,57 @@ require('API/getAdImages.php');
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span><?php echo getCountCart($_SESSION["user_id"]); ?></span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="cart.html">Cart</a></div>
-										<div class="cart_price">$85</div>
+										<div class="cart_text"><a href="cart.php">Cart</a></div>
+										<div class="cart_price">Rs: <?php echo getCartTotal($_SESSION["user_id"]); ?></div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Log out -->
+							<div class="cart" style="margin-left: 20px;">
+								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+									<div class="cart_icon" style="margin-right: -20px;">
+										<img src="images/logout.png" alt="">
+									</div>
+									<div class="cart_content">
+										<div class="cart_text"><a href="API/logout.php">Logout</a></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<?php
+				}else {
+					////////////////////////// If not Logged in /////////////////////////////
+					?>
+					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+								<div class="wishlist_icon"><img src="images/login.png" alt=""></div>
+								<div class="wishlist_content">
+									<div class="wishlist_text"><a href="signIn.php">Log in</a></div>
+								</div>
+							</div>
+
+							<!-- Cart -->
+							<div class="cart">
+								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+									<div class="cart_icon">
+										<img src="images/signup.png" alt="">
+									</div>
+									<div class="cart_content">
+										<div class="cart_text"><a href="signUp.php">Create an Account</a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php
+				}
+					?>
 				</div>
 			</div>
 		</div>
@@ -127,7 +175,15 @@ require('API/getAdImages.php');
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="viewCatogoryComputers&Laptops.html">Vehicles<i class="fas fa-chevron-right ml-auto"></i></a></li>
+									<?php
+									///////////////////// The catagory list ////////////////////////////////////////
+									$result_catagories = getCatagories();
+										while($row_catagories = $result_catagories->fetch_assoc()) {
+											?>
+											<li><a href="viewCatogory.php?catagory=<?php echo $row_catagories["id"]; ?>"><?php echo $row_catagories["name"]; ?><i class="fas <?php echo $row_catagories["fa_icon"]; ?> ml-auto"></i></a></li>
+										<?php
+										}
+									?>
 								</ul>
 							</div>
 
@@ -135,10 +191,10 @@ require('API/getAdImages.php');
 
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="requestList.html">Requests<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postAdStep1.html">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="postRequest.html">Post a Request<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="requestList.php">Requests<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postAdStep1.php">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="postRequest.php">Post a Request<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
@@ -192,16 +248,16 @@ require('API/getAdImages.php');
 									</ul>
 								</li>-->
 								<li class="page_menu_item">
-									<a href="index.html">Home<i class="fa fa-angle-down"></i></a>
+									<a href="index.php">Home<i class="fa fa-angle-down"></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="requestList.html">Requests<i></i></a>
+									<a href="requestList.php">Requests<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postAdStep1.html">Post your Ad<i></i></a>
+									<a href="postAdStep1.php">Post your Ad<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="postRequest.html">Post a Request<i></i></a>
+									<a href="postRequest.php">Post a Request<i></i></a>
 								</li>
 							</ul>
 						</div>
@@ -215,8 +271,8 @@ require('API/getAdImages.php');
   <div class="container" style="margin-top: 25px">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="viewCatogoryComputers&Laptops.html">Computers & Laptops</a></li>
+        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+        <li class="breadcrumb-item"><a href="#"><?php echo getCatagoryName($catagory_id); ?></a></li>
       </ol>
     </nav>
   </div>
@@ -228,7 +284,7 @@ require('API/getAdImages.php');
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="cart_container">
-						<div class="cart_title">Computers & Laptops</div>
+						<div class="cart_title"><?php echo getCatagoryName($catagory_id); ?></div>
 						<!--Ad item -->
 						<?php
 							$result_ads = getAdsHomeRight($catagory_id);
