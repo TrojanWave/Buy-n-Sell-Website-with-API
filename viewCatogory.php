@@ -1,3 +1,11 @@
+<?php
+require('API/keepSession.php');
+require('API/getCatagories.php');
+require('API/getAdsHomeRightPanel.php');
+require('API/getAdImages.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,68 +222,42 @@
 				<div class="col-lg-10 offset-lg-1">
 					<div class="cart_container">
 						<div class="cart_title">Computers & Laptops</div>
-						<!--cart item 1-->
-						<div class="cart_items">
-							<ul class="cart_list">
-								<li class="cart_item clearfix">
-									<div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Name</div>
-											<div class="cart_item_text">MacBook Air 13</div>
-										</div>
-										<div class="cart_item_color cart_info_col">
-											<div class="cart_item_title">Color</div>
-											<div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
-										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">1</div>
-										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Price</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-										<div class="cart_item_total cart_info_col">
-											<div class="cart_item_title">Total</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<!--cart item 2-->
-						<div class="cart_items">
-							<ul class="cart_list">
-								<li class="cart_item clearfix">
-									<div class="cart_item_image"><img src="images/best_4.png" alt=""></div>
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Name</div>
-											<div class="cart_item_text">Leagoo M9</div>
-										</div>
-										<div class="cart_item_color cart_info_col">
-											<div class="cart_item_title">Color</div>
-											<div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
-										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">1</div>
-										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Price</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-										<div class="cart_item_total cart_info_col">
-											<div class="cart_item_title">Total</div>
-											<div class="cart_item_text">$1700</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-
-
+						<!--Ad item -->
+						<?php
+							$result_ads = getAdsHomeRightAll();
+							while($row_ads = $result_ads->fetch_assoc()) {
+								////////////////// Get Images ///////////////////
+								$result_images_ad = getImages($row_ads["id"], 1);
+									while($row_images_ad = $result_images_ad->fetch_assoc()){
+										$image_file = $row_images_ad["file_name"];
+									}
+						?>
+							<a href="product.php?id=<?php echo $row_ads["id"]; ?>">
+								<div class="cart_items">
+									<ul class="cart_list">
+										<li class="cart_item clearfix">
+											<div class="cart_item_image"><img style="height: 120px;" src="uploads/<?php echo $image_file; ?>" alt=""></div>
+											<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+												<div class="cart_item_name cart_info_col">
+													<div class="cart_item_title">Name</div>
+													<div class="cart_item_text"><?php echo $row_ads["ad_title"]; ?></div>
+												</div>
+												<div class="cart_item_price cart_info_col">
+													<div class="cart_item_title">Posted date and time</div>
+													<div class="cart_item_text"><?php echo $row_ads["posted_date"]; ?></div>
+												</div>
+												<div class="cart_item_total cart_info_col">
+													<div class="cart_item_title">Price</div>
+													<div class="cart_item_text">Rs: <?php echo $row_ads["price"]; ?> /-</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</a>
+						<?php
+							}
+						?>
 					</div>
 				</div>
 			</div>

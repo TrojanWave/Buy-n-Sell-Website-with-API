@@ -90,7 +90,7 @@ require('API/loginCheck.php');
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="wishlist.html">Wishlist</a></div>
+									<div class="wishlist_text"><a href="wishlist.php">Wishlist</a></div>
 									<div class="wishlist_count">115</div>
 								</div>
 							</div>
@@ -103,7 +103,7 @@ require('API/loginCheck.php');
 										<div class="cart_count"><span>10</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="cart.html">Cart</a></div>
+										<div class="cart_text"><a href="cart.php">Cart</a></div>
 										<div class="cart_price">$85</div>
 									</div>
 								</div>
@@ -190,7 +190,7 @@ require('API/loginCheck.php');
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
 									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="requestList.html">Requests<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="requestList.php">Requests<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="postAdStep1.php">Post your Ad<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="postRequest.php">Post a Request<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
@@ -249,7 +249,7 @@ require('API/loginCheck.php');
 									<a href="index.php">Home<i class="fa fa-angle-down"></i></a>
 								</li>
 								<li class="page_menu_item has-children">
-									<a href="requestList.html">Requests<i></i></a>
+									<a href="requestList.php">Requests<i></i></a>
 								</li>
 								<li class="page_menu_item has-children">
 									<a href="postAdStep1.php">Post your Ad<i></i></a>
@@ -276,8 +276,8 @@ require('API/loginCheck.php');
 					<div class="banner_content">
 						<h1 class="banner_text">free classifieds for all</h1>
 						<div class="banner_price">Sell and Buy<br>Request your need</div>
-						<div class="button banner_button"><a href="#">Post Your Ad</a></div>
-						<div class="button banner_button"><a href="#">Post a Request</a></div>
+						<div class="button banner_button"><a href="postAdStep1.php">Post Your Ad</a></div>
+						<div class="button banner_button"><a href="postRequest.php">Post a Request</a></div>
 					</div>
 				</div>
 			</div>
@@ -286,7 +286,7 @@ require('API/loginCheck.php');
 
 	<!-- Deals of the week -->
 
-	<div class="deals_featured">
+	<div class="deals_featured" style="margin-top: 50px">
 		<div class="container">
 			<div class="row">
 				<div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
@@ -376,7 +376,7 @@ require('API/loginCheck.php');
 												<div class="product_content">
 												<a href="product.php?id=<?php echo $row_right_panel["id"]; ?>">
 													<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
-													<div class="product_name"><div><a href="product.html"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+													<div class="product_name"><div><a href="product.php"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
 												</a>
 												<div class="product_extras">
 													<button class="product_cart_button">Add to Cart</button>
@@ -414,7 +414,7 @@ require('API/loginCheck.php');
 												<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="uploads/<?php echo $image_file_right; ?>" alt=""></div>
 												<div class="product_content">
 													<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
-													<div class="product_name"><div><a href="product.html"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+													<div class="product_name"><div><a href="product.php"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
 													<div class="product_extras">
 														<button class="product_cart_button">Add to Cart</button>
 													</div>
@@ -452,7 +452,7 @@ require('API/loginCheck.php');
 												<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="uploads/<?php echo $image_file_right; ?>" alt=""></div>
 												<div class="product_content">
 													<div class="product_price discount"><?php echo $row_right_panel["price"]; ?>/-</div>
-													<div class="product_name"><div><a href="product.html"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
+													<div class="product_name"><div><a href="product.php"><?php echo $row_right_panel["ad_title"]; ?></a></div></div>
 													<div class="product_extras">
 														<button class="product_cart_button">Add to Cart</button>
 													</div>
